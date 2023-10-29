@@ -1,27 +1,75 @@
-{% extends "base.html" %}
-{% block title %}Enter Doctor Information{% endblock %}
-{% block head %}
-    {{ super() }}
-    
-{% endblock %}
-{% block content %}
-<h1>Enter Doctor's Information</h1>
- <form>
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Registration</title>
+  </head>
+  <body>
+    <header>
+      <h1>Enter Doctor's Information</h1>
+    </header>
+    <main>
+      <form>
+        <div>
+          <label for="firstName">First Name:</label>
+          <input
+            required
+            type="text"
+            id="firstName"
+            name="First Name"
+            placeholder="John"
+          />
+        </div>
 
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName">
+        <div>
+          <label for="age">Age:</label>
+          <input
+            required
+            type="number"
+            id="age"
+            name="Age"
+            placeholder="30"
+            min="21"
+          />
+        </div>
 
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age">
+        <div>
+          <label for="phoneNumber">Phone Number:</label>
+          <input
+            required
+            type="number"
+            id="phoneNumber"
+            name="Phone Number"
+            placeholder="123-456-7890"
+          />
+        </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email">
+        <div>
+          <label for="email">Email:</label>
+          <input
+            required
+            type="email"
+            id="email"
+            name="Email"
+            placeholder="example@gmail.com"
+          />
+        </div>
 
-    <label for="phoneNumber">Phone Number:</label>
-    <input type="tel" id="phoneNumber" name="phoneNumber">
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input
+            required
+            type="text"
+            id="lastName"
+            name="Last Name"
+            placeholder="Doe"
+          />
+        </div>
 
-    <input type="submit" value="Submit">
-</form>
-{% endblock %}
+        <button type="submit">SUBMIT</button>
+        <button type="reset">RESET</button>
+      </form>
+    </main>
+  </body>
+</html>

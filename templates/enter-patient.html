@@ -1,50 +1,123 @@
-{% extends "base.html" %}
-{% block title %}Patient Information{% endblock %}
-{% block head %}
-    {{ super() }}
-    
-{% endblock %}
-{% block content %}
-<h1>Enter Patient Information</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Registration</title>
+  </head>
+  <body>
+    <header>
+      <h1>Enter Patient Information</h1>
+    </header>
+    <main>
+      <form>
+        <div>
+          <label for="firstName">First Name:</label>
+          <input
+            required
+            type="text"
+            id="firstName"
+            name="First Name"
+            placeholder="John"
+          />
+        </div>
 
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input
+            required
+            type="text"
+            id="lastName"
+            name="Last Name"
+            placeholder="Doe"
+          />
+        </div>
 
-<form>
-   <label for="firstName">First Name:</label>
-   <input type="text" id="firstName" name="firstName">
+        <div>
+          <label for="phoneNumber">Phone Number:</label>
+          <input
+            required
+            type="number"
+            id="phoneNumber"
+            name="Phone Number"
+            placeholder="123-456-7890"
+          />
+        </div>
 
-   <label for="lastName">Last Name:</label>
-   <input type="text" id="lastName" name="lastName">
+        <div>
+          <label for="email">Email:</label>
+          <input
+            required
+            type="email"
+            id="email"
+            name="Email"
+            placeholder="example@gmail.com"
+          />
+        </div>
 
-   <label for="phoneNumber">Phone Number:</label>
-   <input type="number" id="PhoneNum" name="PhoneNum">
+        <div>
+          <label for="address">Address:</label>
+          <input
+            required
+            type="text"
+            id="address"
+            name="Address"
+            placeholder="123 streetName cityName stateName"
+          />
+        </div>
 
-   <label for="address">Address:</label>
-   <input type="address" id="address" name="address">
+        <div>
+          <label for="allergies">Allergies:</label>
+          <input
+            required
+            type="text"
+            id="allergies"
+            name="Allergies"
+            placeholder="Peanut"
+          />
+        </div>
 
-   <label for="email">Email:</label>
-   <input type="email" id="email" name="email">
+        <div>
+          <label for="age">Age:</label>
+          <input required type="number" id="age" name="Age" placeholder="1" />
+        </div>
 
-   <label for="age">Age:</label>
-   <input type="age" id="age" name="age">
+        <div>
+          <label for="dob">Date Of Birth:</label>
+          <input
+            required
+            type="text"
+            id="dob"
+            name="Date Of Birth"
+            placeholder="October 28, 2023"
+          />
+        </div>
+        <div>
+          Gender
+          <div>
+            <label for="M">Male</label>
+            <input required type="radio" id="M" name="gender" value="Male" />
+          </div>
+          <div>
+            <label for="F">Female</label>
+            <input required type="radio" id="F" name="gender" value="Female" />
+          </div>
+        </div>
 
-   <label for="gender">Gender:</label>
-   <input type="gender" id="gender" name="gender">
+        <div>
+          <label for="healthCondition">Health Conditon:</label>
+          <input
+            required
+            type="text"
+            id="healthCondition"
+            name="Health Conditon"
+            placeholder="Normal"
+          />
+        </div>
 
-   <label for="gender">Gender:</label>
-   <input type="gender" id="gender" name="gender">
-
-   <label for="gender">Gender:</label>
-   <input type="gender" id="gender" name="gender">
-
-   <label for="dob">Date Of Birth:</label>
-   <input type="dob" id="dob" name="dob">
-
-   <label for="healthCondition">Health Conditon:</label>
-   <input type="healthCondition" id="healthCondition" name="healthCondition">
-
-   <label for="allergies">Allergies:</label>
-   <input type="allegies" id="allegies" name="allegies">
-
-   <input type="submit" value="Submit">
-</form>
-{% endblock %}
+        <button type="submit">SUBMIT</button>
+        <button type="reset">RESET</button>
+      </form>
+    </main>
+  </body>
+</html>
