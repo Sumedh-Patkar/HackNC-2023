@@ -1,23 +1,27 @@
-{% extends "base.html" %} {% block title %}Patient Information{% endblock %} {%
-block head %}
-<!-- Additional head content can be added here -->
-{% endblock %} {% block content %}
-<h1>Patient Information:</h1>
+{% extends "base.html" %} 
+{% block title %}Patient Information{% endblock %} 
+{% block head %}
+  {{ super() }}
+{% endblock %} 
 
-{% for patient in patients_list %}
-<p>
-  Patient ID: {{ patient.get('_id') }} <br />
-  Name: {{ patient.get('name') }} {{ patient.get('lastName') }} <br />
-  Phone Number: {{ patient.get('phoneNumber') }} <br />
-  Email: {{ patient.get('email') }} <br />
-  Address: {{ patient.get('address') }} <br />
-  Allergies: {{ patient.get('allergies') }} <br />
-  Prescription Date: {{ patient.get('prescriptionDate') }} <br />
-  Age: {{ patient.get('age') }} <br />
-  Date of Birth: {{ patient.get('dateOfBirth') }} <br />
-  Gender: {{ patient.get('gender') }} <br />
-  Health Condition: {{ patient.get('healthCondition') }} <br />
-</p>
-<hr />
-<!-- Optional horizontal line to separate patients -->
-{% endfor %} {% endblock %}
+{% block content %}
+    <h1>Patient Information:</h1>
+
+    {% for patient in patients_list %}
+    <p>
+      Patient ID: {{ patient.get('_id') }} <br />
+      Name: {{ patient.get('firstName') }} {{ patient.get('lastName') }} <br />
+      Phone Number: {{ patient.get('phoneNumber') }} <br />
+      Email: {{ patient.get('email') }} <br />
+      Address: {{ patient.get('address') }} <br />
+      Allergies: {{ patient.get('allergies') }} <br />
+      Prescription Date: {{ patient.get('prescriptionDate') }} <br />
+      Age: {{ patient.get('age') }} <br />
+      Date of Birth: {{ patient.get('dob') }} <br />
+      Gender: {{ patient.get('gender') }} <br />
+      Health Condition: {{ patient.get('healthCondition') }} <br />
+    </p>
+    <hr />
+    <!-- Optional horizontal line to separate patients -->
+    {% endfor %} 
+{% endblock %}

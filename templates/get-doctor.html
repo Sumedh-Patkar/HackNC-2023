@@ -12,4 +12,16 @@
     {% endfor %}
     </ul>
     
+    {% for doctor in doctors_list %}
+    <p>
+      doctor ID: {{ doctor.get('_id') }} <br />
+      Name: {{ doctor.get('firstName') }} {{ doctor.get('lastName') }} <br />
+      Phone Number: {{ doctor.get('phoneNumber') }} <br />
+      Email: {{ doctor.get('email') }} <br />
+      Age: {{ doctor.get('age') }} <br />
+    </p>
+    <hr />
+    <!-- Optional horizontal line to separate doctors -->
+    {% endfor %} 
 {% endblock %}
+    
