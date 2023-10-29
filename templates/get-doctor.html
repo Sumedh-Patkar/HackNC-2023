@@ -1,11 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Doctor Infomation{% endblock %}
+{% block title %}Get Doctor Infomation{% endblock %}
 {% block head %}
     {{ super() }}
     
 {% endblock %}
 {% block content %}
-    <h1>Doctor Information:</h1>
+<ul id= "doctor_list">
+    
+    {% for item in doctor_list %}
+        <p>{item}</p>
+    {% endfor %}
+    </ul>
     
     {% for doctor in doctors_list %}
     <p>

@@ -1,49 +1,144 @@
 {% extends "base.html" %} {% block title %}Patient Information{% endblock %} {%
 block head %} {{ super() }} {% endblock %} {% block content %}
-<h1>Enter Patient Information</h1>
+<h1 class="text-center">Enter Patient Information</h1>
 
-<form action="/insert_patient" method="POST" id="insert-patient-form">
-  <label for="firstName">First Name:</label>
-  <input type="text" id="firstName" name="firstName" />
+<div class="container">
+  <div class="input-group d-flex justify-content-center">
+    <form action="/insert_patient" method="POST" id="insert-patient-form">
+      <h3 class="text-center" style="color: brown">Personal Information</h3>
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6 col-sm-12">
+          <input
+            style="margin: 10px"
+            class="form-control"
+            aria-label="First Name"
+            placeholder="First Name"
+            type="text"
+            id="firstName"
+            name="firstName"
+          />
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <input
+            style="margin: 10px"
+            class="form-control"
+            aria-label="Last Name"
+            placeholder="Last Name"
+            type="text"
+            id="lastName"
+            name="lastName"
+          />
+        </div>
+      </div>
 
-  <label for="lastName">Last Name:</label>
-  <input type="text" id="lastName" name="lastName" />
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6 col-sm-12">
+          <input
+            style="margin: 10px"
+            class="form-control"
+            aria-label="Age"
+            placeholder="Age"
+            min="0"
+            type="number"
+            id="age"
+            name="age"
+          />
+        </div>
+        <div class="col-md-6 cold-sm-12">
+          <input
+            style="margin: 10px"
+            class="form-control"
+            aria-label="Gender"
+            placeholder="Gender"
+            type="gender"
+            id="gender"
+            name="gender"
+          />
+        </div>
+      </div>
 
-  <label for="phoneNumber">Phone Number:</label>
-  <input type="number" id="phoneNumber" name="phoneNumber" />
+      <input
+        style="margin: 10px"
+        class="form-control"
+        aria-label="Date of Birth (xx-xx-xxxx)"
+        placeholder="Date of Birth (xx-xx-xxxx)"
+        type="text"
+        id="dob"
+        name="dob"
+      />
 
-  <label for="address">Address:</label>
-  <input type="address" id="address" name="address" />
+      <h3 class="text-center" style="color: brown">Contact Information</h3>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" />
+      <div class="row d-flex justify-content-center">
+        <div class="col-12">
+          <input
+            style="margin: 10px"
+            class="form-control"
+            aria-label="Phone Number"
+            placeholder="Phone Number: (xxx-xxx-xxxx)"
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+          />
+        </div>
+        <div class="col-12">
+          <input
+            style="margin: 10px"
+            class="form-control"
+            aria-label="Email"
+            placeholder="Email"
+            type="email"
+            id="email"
+            name="email"
+          />
+        </div>
+      </div>
 
-  <label for="age">Age:</label>
-  <input type="age" id="age" name="age" />
+      <input
+        style="margin: 10px"
+        class="form-control"
+        aria-label="Address"
+        placeholder="Address"
+        type="address"
+        id="address"
+        name="address"
+      />
 
-  <label for="gender">Gender:</label>
-  <input type="gender" id="gender" name="gender" />
+      <h3 class="text-center" style="color: brown">Health Information</h3>
 
-  <label for="dob">Date Of Birth:</label>
-  <input type="dob" id="dob" name="dob" />
+      <input
+        style="margin: 10px"
+        class="form-control"
+        aria-label="Health Condition"
+        placeholder="Health Condition"
+        type="healthCondition"
+        id="healthCondition"
+        name="healthCondition"
+      />
 
-  <label for="healthCondition">Health Conditon:</label>
-  <input type="healthCondition" id="healthCondition" name="healthCondition" />
+      <input
+        style="margin: 10px"
+        class="form-control"
+        aria-label="Allergies"
+        placeholder="Allergies"
+        type="allegies"
+        id="allegies"
+        name="allegies"
+      />
 
-  <label for="allergies">Allergies:</label>
-  <input type="allegies" id="allegies" name="allegies" />
-
-  <!-- Enter patient (Submit form) button -->
-  <div class="text-center">
-    <button
-      type="button"
-      id="submit-patient-form"
-      class="btn btn-lg btn-success font-weight-bold mr-5 my-5"
-    >
-      Enter Patient Info
-    </button>
+      <!-- Enter patient (Submit form) button -->
+      <div class="text-center">
+        <button
+          type="button"
+          id="submit-patient-form"
+          class="btn btn-lg btn-success font-weight-bold mr-5 my-5"
+        >
+          Enter Patient Info
+        </button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
 
 <script>
   $("#submit-patient-form").click(function () {
