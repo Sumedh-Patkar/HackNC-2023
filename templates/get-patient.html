@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Get Doctor Infomation{% endblock %}
+{% block title %}Get Patient Information{% endblock %}
 {% block head %}
     {{ super() }}
-    
+   
 {% endblock %}
 {% block content %}
-<ul id= "doctor_list">
+
+<ul id= "patient_list">
     
-    {% for item in doctor_list %}
+    {% for item in patient_list %}
         <p>{item}</p>
     {% endfor %}
     </ul>
-    
 {% endblock %}
