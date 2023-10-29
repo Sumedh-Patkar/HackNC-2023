@@ -16,6 +16,22 @@ def parse_json(data):
 def home():
     return render_template('home.html')
 
+@app.route('/get_doctors', methods=['GET'])
+def get_doctors():
+    return render_template('get-doctor.html')
+
+@app.route('/get_patients', methods=['GET'])
+def get_patients():
+    return render_template('get-patients.html')
+
+@app.route('/enter_doctors', methods=['GET'])
+def enter_doctors():
+    return render_template('enter-doctors.html')
+
+@app.route('/enter_patients', methods=['GET'])
+def enter_patients():
+    return render_template('enter-patients.html')
+
 @app.route('/api/get-doctors', methods=['GET'])
 def get_doctors():
     client = MongoClient(mongo_uri)
@@ -28,7 +44,7 @@ def get_doctors():
         return parse_json(doctors)
     except Exception as e:
         print(f'Error getting doctor data: {e}')
-        return json.dumps({'message': 'An error occurred'}), 500
+        return parse_json({'message': 'An error occurred'}), 500
     finally:
         client.close()
 
@@ -44,7 +60,7 @@ def get_patients():
         return parse_json(patients)
     except Exception as e:
         print(f'Error getting patient data: {e}')
-        return json.dumps({'message': 'An error occurred'}), 500
+        return parse_json({'message': 'An error occurred'}), 500
     finally:
         client.close()
 
@@ -55,13 +71,13 @@ def insert_doctor():
     try:
         client.server_info()  # Check if connected to MongoDB
         db = client.your_database_name
-        doctors_collection = db.doctors
+        doctors_collection = db.get_collection('doctors_collection')
 
         insert_result = doctors_collection.insert_one(data)
-        return json.dumps({'message': 'Doctor data inserted successfully', 'inserted_id': str(insert_result.inserted_id)})
+        return parse_json({'message': 'Doctor data inserted successfully', 'inserted_id': str(insert_result.inserted_id)})
     except Exception as e:
         print(f'Error inserting doctor data: {e}')
-        return json.dumps({'message': 'An error occurred'}), 500
+        return parse_json({'message': 'An error occurred'}), 500
     finally:
         client.close()
 
@@ -71,14 +87,14 @@ def insert_patient():
     client = MongoClient(mongo_uri)
     try:
         client.server_info()  # Check if connected to MongoDB
-        db = client.your_database_name
-        patients_collection = db.patients
+        db = client.get_database(db_name)
+        patient_collection = db.get_collection('patient_collection')
 
-        insert_result = patients_collection.insert_one(data)
-        return json.dumps({'message': 'Patient data inserted successfully', 'inserted_id': str(insert_result.inserted_id)})
+        insert_result = patient_collection.insert_one(data)
+        return parse_json({'message': 'Patient data inserted successfully', 'inserted_id': str(insert_result.inserted_id)})
     except Exception as e:
         print(f'Error inserting patient data: {e}')
-        return json.dumps({'message': 'An error occurred'}), 500
+        return parse_json({'message': 'An error occurred'}), 500
     finally:
         client.close()
 
