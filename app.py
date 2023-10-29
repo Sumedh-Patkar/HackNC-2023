@@ -16,6 +16,22 @@ def parse_json(data):
 def home():
     return render_template('home.html')
 
+@app.route('/get_doctors', methods=['GET'])
+def get_doctors():
+    return render_template('get-doctor.html')
+
+@app.route('/get_patients', methods=['GET'])
+def get_patients():
+    return render_template('get-patients.html')
+
+@app.route('/enter_doctors', methods=['GET'])
+def enter_doctors():
+    return render_template('enter-doctors.html')
+
+@app.route('/enter_patients', methods=['GET'])
+def enter_patients():
+    return render_template('enter-patients.html')
+
 @app.route('/api/get-doctors', methods=['GET'])
 def get_doctors():
     client = MongoClient(mongo_uri)
