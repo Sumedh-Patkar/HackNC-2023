@@ -11,26 +11,80 @@
     <link rel="stylesheet" href="/static/css/lib/bootstrap.min.css" />
     <title>{% block title %}{% endblock %} - Base</title>
     {% endblock %}
+    <style>
+      body {
+        background-color: hsl(207, 100%, 50%);
+      }
+      .navbar-light .navbar-nav .nav-link {
+        color: rgb(255 255 255);
+      }
+      footer {
+        border-radius: 10px;
+        color: white;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <h1 class="large-header text-primary mt-5 text-center">WEB MD</h1>
-    </div>
+    <div class="container"></div>
 
-    <div class="row">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-dark margin-bottom:10px"
+      style="margin-bottom: 10px"
+    >
+      <a class="navbar-brand" href="/"
+        ><h1 class="large-header text-primary text-center">WEB MD</h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse padding-top:15" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/get_doctors">Get Doctor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/get_patients">Get Patients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/enter_doctors">Enter Doctor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/enter_patients">Enter Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/enter_prescription"
+              >Enter Prescription</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- <div class="row">
       <a href="/">Home</a>
       <a href="/get_doctors">Get Doctor</a>
       <a href="/get_patients">Get Patients</a>
       <a href="/enter_doctors">Enter Doctor</a>
       <a href="/enter_patients">Enter Patient</a>
       <a href="/enter_prescription">Enter Prescription</a>
-    </div>
+    </div> -->
 
     <div id="content">{% block content %}{% endblock %}</div>
 
     <h2></h2>
   </body>
   <footer class="margin-left:0 fixed-bottom">
-    <div class="container">Copyright &copyWeb MD all rights reserved</div>
+    <div class="container text-center">
+      Copyright &copyWeb MD all rights reserved
+    </div>
   </footer>
 </html>
