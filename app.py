@@ -16,14 +16,13 @@ def parse_json(data):
 def home():
     return render_template('home.html')
 
-
 @app.route('/enter_doctors', methods=['GET'])
 def enter_doctors():
-    return render_template('enter-doctors.html')
+    return render_template('enter-doctor.html')
 
 @app.route('/enter_patients', methods=['GET'])
 def enter_patients():
-    return render_template('enter-patients.html')
+    return render_template('enter-patient.html')
 
 @app.route('/get_doctors', methods=['GET'])
 def get_doctors():
@@ -57,7 +56,7 @@ def get_patients():
     finally:
         client.close()
 
-@app.route('/api/insert-doctor', methods=['POST'])
+@app.route('/insert_doctor', methods=['POST'])
 def insert_doctor():
     data = request.get_json()
     client = MongoClient(mongo_uri)
@@ -74,9 +73,13 @@ def insert_doctor():
     finally:
         client.close()
 
-@app.route('/api/insert-patient', methods=['POST'])
+@app.route('/insert_patient', methods=['POST'])
 def insert_patient():
-    data = request.get_json()
+    print("got the insert patient request")
+    print(request.get_data())
+    print("printed")
+    data = json.loads(request.get_data())
+    print(data)
     client = MongoClient(mongo_uri)
     try:
         client.server_info()  # Check if connected to MongoDB
