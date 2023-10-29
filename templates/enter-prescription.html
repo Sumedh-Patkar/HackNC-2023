@@ -25,10 +25,22 @@
         <label class="px-3" for="prescription_name">Medication name</label>
         <select data-toggle="tooltip" data-placement="bottom" data-container="body" title="Select one" id="prescription_name" class="form-control w-50" name="prescription_name">
           {% for medication in medications_list %}
-            <option value="{{medication.name}}">{{medication.name}}</option>
+            <option value="{{medication._id}}">{{medication.name}}</option>
           {% endfor %}
         </select>
       </div>
+
+      <label for="purpose">Purpose:</label>
+      <input type="text" id="purpose" name="purpose" />
+    
+      <label for="dosage">Dosage:</label>
+      <input type="text" id="dosage" name="dosage" />
+
+      <label for="route">Route:</label>
+      <input type="text" id="route" name="route" />
+
+      <label for="frequency">Frequency:</label>
+      <input type="text" id="frequency" name="frequency" />
 
       <div>
         <label class="px-3" for="patient_name">Patient name</label>
