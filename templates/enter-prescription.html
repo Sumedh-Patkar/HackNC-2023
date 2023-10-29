@@ -1,35 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Prescription</title>
-  </head>
-  <body>
-    <form method="GET">
-      <div>
-        <h1>NEW PRESCRIPTION</h1>
+{% extends "base.html" %} 
+
+{% block title %}Enter Doctor Information{% endblock%} 
+
+{% block head %} 
+    {{ super() }} 
+{% endblock %} 
+
+{% block content %}
+<h1>Enter Prescription</h1>
+  <form action="/insert_prescription" method="POST" id="insert-prescription-form">
+      <!-- <div>
         <label for="ID_field">ID:</label>
         <input
-          required
+          required disabled
           id="ID_field"
           type="text"
           name="ID"
           placeholder="0102000A0AAAAAA"
+
+          style="background-color: #BBBBBB;"
         />
-      </div>
+      </div> -->
       <div>
-        <label for="name"> Prescription Name:</label>
-        <input
-          required
-          id="name"
-          type="text"
-          name="Prescription Name"
-          placeholder="Hyoscine Butylbrom_Tab 10mg"
-        />
+        <label class="px-3" for="prescription_name">Medication name</label>
+        <select data-toggle="tooltip" data-placement="bottom" data-container="body" title="Select one" id="prescription_name" class="form-control w-50" name="prescription_name">
+          {% for medication in medications_list %}
+            <option value="{{medication.name}}">{{medication.name}}</option>
+          {% endfor %}
+        </select>
       </div>
-      <button type="reset">RESET</button>
-      <button type="submit">SUBMIT</button>
+
+      <div>
+        <label class="px-3" for="patient_name">Patient name</label>
+        <select data-toggle="tooltip" data-placement="bottom" data-container="body" title="Select one" id="patient_name" class="form-control w-50" name="patient_name">
+          {% for patient in patients_list %}
+            <option value="{{patient._id}}">{{patient.firstName}} {{patient.lastName}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label class="px-3" for="doctor_name">Doctor name</label>
+        <select data-toggle="tooltip" data-placement="bottom" data-container="body" title="Select one" id="doctor_name" class="form-control w-50" name="doctor_name">
+          {% for doctor in doctors_list %}
+            <option value="{{doctor._id}}">{{doctor.firstName}} {{doctor.lastName}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Enter Prescription (Submit form) button -->
+      <div class="text-center">
+        <button
+          type="button"
+          id="submit-prescription-form"
+          class="btn btn-lg btn-success font-weight-bold mr-5 my-5"
+        >
+          Generate Prescription
+        </button>
+      </div>
     </form>
-  </body>
-</html>
+
+    <script>
+      $("#submit-prescription-form").click(function () {
+        var $form = $("#insert-prescription-form");
+        let formData = JSON.stringify(getFormData($form));
+  
+        $.ajax({
+          type: "POST",
+          url: "/insert_prescription",
+          data: formData,
+          success: function (response) {
+            console.log("Success");
+            console.log(response)
+          },
+          dataType: "json",
+          contentType: "application/json",
+        });
+      });
+    </script>  
+
+{% endblock %}

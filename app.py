@@ -32,10 +32,30 @@ def get_doctors():
         db = client.get_database(db_name)
         doctors_collection = db.get_collection('doctors_collection')
 
-        doctors = list(doctors_collection.find({}))
-        return parse_json(doctors)
+        doctors_list = list(doctors_collection.find({}))
+        return render_template("get-doctor.html", doctors_list = doctors_list)
     except Exception as e:
-        print(f'Error getting doctor data: {e}')
+        print(f'Error getting doctors data: {e}')
+        return parse_json({'message': 'An error occurred'}), 500
+    finally:
+        client.close()
+
+@app.route('/enter_prescription', methods=['GET'])
+def enter_prescription():
+    client = MongoClient(mongo_uri)
+    try:
+        client.server_info()  # Check if connected to MongoDB
+        db = client.get_database(db_name)
+        medications_collection = db.get_collection('medications_collection')
+        patient_collection = db.get_collection('patient_collection')
+        doctors_collection = db.get_collection('doctors_collection')
+
+        doctors_list = list(doctors_collection.find({}))
+        patients_list = list(patient_collection.find({}))
+        medications_list = list(medications_collection.find({}))
+        return render_template('enter-prescription.html', medications_list = medications_list, doctors_list=doctors_list, patients_list=patients_list)
+    except Exception as e:
+        print(f'Error getting prescription data: {e}')
         return parse_json({'message': 'An error occurred'}), 500
     finally:
         client.close()
@@ -48,8 +68,8 @@ def get_patients():
         db = client.get_database(db_name)
         patient_collection = db.get_collection('patient_collection')
 
-        patients = list(patient_collection.find({}))
-        return render_template("get-patient.html", patients_list = patients)
+        patients_list = list(patient_collection.find({}))
+        return render_template("get-patient.html", patients_list = patients_list)
     except Exception as e:
         print(f'Error getting patient data: {e}')
         return parse_json({'message': 'An error occurred'}), 500
@@ -86,6 +106,24 @@ def insert_patient():
         return parse_json({'message': 'Patient data inserted successfully', 'inserted_id': str(insert_result.inserted_id)})
     except Exception as e:
         print(f'Error inserting patient data: {e}')
+        return parse_json({'message': 'An error occurred'}), 500
+    finally:
+        client.close()
+
+
+@app.route('/insert_prescription', methods=['POST'])
+def insert_prescription():
+    data = json.loads(request.get_data())
+    client = MongoClient(mongo_uri)
+    try:
+        client.server_info()  # Check if connected to MongoDB
+        db = client.get_database(db_name)
+        prescription_collection = db.get_collection('prescription_collection')
+
+        insert_result = prescription_collection.insert_one(data)
+        return parse_json({'message': 'Prescription data inserted successfully', 'inserted_id': str(insert_result.inserted_id)})
+    except Exception as e:
+        print(f'Error inserting prescription data: {e}')
         return parse_json({'message': 'An error occurred'}), 500
     finally:
         client.close()

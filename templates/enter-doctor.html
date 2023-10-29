@@ -1,50 +1,57 @@
-{% extends "base.html" %} {% block title %}Enter Doctor Information{% endblock
-%} {% block head %} {{ super() }} {% endblock %} {% block content %}
-<h1>Enter Doctor's Information</h1>
-<form action="/insert_doctor" method="POST" id="insert-doctor-form">
-  <label for="firstName">First Name:</label>
-  <input type="text" id="firstName" name="firstName" />
+{% extends "base.html" %} 
 
-  <label for="lastName">Last Name:</label>
-  <input type="text" id="lastName" name="lastName" />
+{% block title %}Enter Doctor Information{% endblock%} 
 
-  <label for="age">Age:</label>
-  <input type="number" id="age" name="age" />
+{% block head %} 
+    {{ super() }} 
+{% endblock %} 
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" />
+{% block content %}
+  <h1>Enter Doctor's Information</h1>
+  <form action="/insert_doctor" method="POST" id="insert-doctor-form">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" />
 
-  <label for="phoneNumber">Phone Number:</label>
-  <input type="tel" id="phoneNumber" name="phoneNumber" />
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" />
 
-  <!-- Enter Doctor (Submit form) button -->
-  <div class="text-center">
-    <button
-      type="button"
-      id="submit-doctor-form"
-      class="btn btn-lg btn-success font-weight-bold mr-5 my-5"
-    >
-      Enter doctor Info
-    </button>
-  </div>
-</form>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" />
 
-<script>
-  $("#submit-doctor-form").click(function () {
-    var $form = $("#insert-doctor-form");
-    let formData = JSON.stringify(getFormData($form));
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" />
 
-    $.ajax({
-      type: "POST",
-      url: "/insert_doctor",
-      data: formData,
-      success: function (response) {
-        console.log("Success");
-        console.log(response)
-      },
-      dataType: "json",
-      contentType: "application/json",
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" />
+
+    <!-- Enter Doctor (Submit form) button -->
+    <div class="text-center">
+      <button
+        type="button"
+        id="submit-doctor-form"
+        class="btn btn-lg btn-success font-weight-bold mr-5 my-5"
+      >
+        Enter doctor Info
+      </button>
+    </div>
+  </form>
+
+  <script>
+    $("#submit-doctor-form").click(function () {
+      var $form = $("#insert-doctor-form");
+      let formData = JSON.stringify(getFormData($form));
+
+      $.ajax({
+        type: "POST",
+        url: "/insert_doctor",
+        data: formData,
+        success: function (response) {
+          console.log("Success");
+          console.log(response)
+        },
+        dataType: "json",
+        contentType: "application/json",
+      });
     });
-  });
-</script>
+  </script>
 {% endblock %}

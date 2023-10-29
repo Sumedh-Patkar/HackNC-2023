@@ -3,8 +3,8 @@ block head %} {{ super() }} {% endblock %} {% block content %}
 <h1>Enter Patient Information</h1>
 
 <form action="/insert_patient" method="POST" id="insert-patient-form">
-  <label for="name">First Name:</label>
-  <input type="text" id="name" name="name" />
+  <label for="firstName">First Name:</label>
+  <input type="text" id="firstName" name="firstName" />
 
   <label for="lastName">Last Name:</label>
   <input type="text" id="lastName" name="lastName" />
