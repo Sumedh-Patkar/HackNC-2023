@@ -16,13 +16,6 @@ def parse_json(data):
 def home():
     return render_template('home.html')
 
-@app.route('/get_doctors', methods=['GET'])
-def get_doctors():
-    return render_template('get-doctor.html')
-
-@app.route('/get_patients', methods=['GET'])
-def get_patients():
-    return render_template('get-patients.html')
 
 @app.route('/enter_doctors', methods=['GET'])
 def enter_doctors():
@@ -32,7 +25,7 @@ def enter_doctors():
 def enter_patients():
     return render_template('enter-patients.html')
 
-@app.route('/api/get-doctors', methods=['GET'])
+@app.route('/get_doctors', methods=['GET'])
 def get_doctors():
     client = MongoClient(mongo_uri)
     try:
@@ -48,7 +41,7 @@ def get_doctors():
     finally:
         client.close()
 
-@app.route('/api/get-patients', methods=['GET'])
+@app.route('/get_patients', methods=['GET'])
 def get_patients():
     client = MongoClient(mongo_uri)
     try:
@@ -57,7 +50,7 @@ def get_patients():
         patient_collection = db.get_collection('patient_collection')
 
         patients = list(patient_collection.find({}))
-        return parse_json(patients)
+        return render_template("get-patient.html", patients_list = patients)
     except Exception as e:
         print(f'Error getting patient data: {e}')
         return parse_json({'message': 'An error occurred'}), 500
