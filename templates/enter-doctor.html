@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Enter Doctor Information{% endblock%}
 {% block head %} {{ super() }} {% endblock %} {% block content %}
-<h1 class="text-center text-white">Enter Doctor's Information</h1>
+<h1 class="text-center">Enter Doctor's Information</h1>
 <br />
 
 <div class="container">
@@ -43,6 +43,7 @@
         class="form-control"
         aria-label="Age"
         placeholder="Age"
+        min="0"
         type="number"
         id="age"
         name="age"
@@ -64,7 +65,7 @@
         style="margin: 10px"
         class="form-control"
         aria-label="Phone Number"
-        placeholder="Phone Number"
+        placeholder="Phone Number: (xxx-xxx-xxxx)"
         type="tel"
         id="phoneNumber"
         name="phoneNumber"
