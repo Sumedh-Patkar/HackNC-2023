@@ -2,7 +2,7 @@
 block head %} {{ super() }} {% endblock %} {% block content %}
 <h1>Enter Patient Information</h1>
 
-<form>
+<form action="/insert_patient" method="POST"id="insert-patient-form">
   <label for="firstName">First Name:</label>
   <input type="text" id="firstName" name="firstName" />
 
@@ -22,13 +22,7 @@ block head %} {{ super() }} {% endblock %} {% block content %}
   <input type="age" id="age" name="age" />
 
   <label for="gender">Gender:</label>
-  <input type="gender" id="gender" name="gender" />
-
-  <label for="gender">Gender:</label>
-  <input type="gender" id="gender" name="gender" />
-
-  <label for="gender">Gender:</label>
-  <input type="gender" id="gender" name="gender" />
+  <input type="gender" id="gender" name="gender"/>
 
   <label for="dob">Date Of Birth:</label>
   <input type="dob" id="dob" name="dob" />
@@ -39,6 +33,35 @@ block head %} {{ super() }} {% endblock %} {% block content %}
   <label for="allergies">Allergies:</label>
   <input type="allegies" id="allegies" name="allegies" />
 
-  <input type="submit" value="Submit" />
+  <!-- <input type="submit" value="Submit" /> -->
+
+  <!-- Generate reports (Submit form) button -->
+  <div class="text-center">
+    <button type="button" id="submit-patient-form" class="btn btn-lg btn-success font-weight-bold mr-5 my-5">Enter Patient Info</button>
+  </div>
+
 </form>
+
+<script>
+
+$('#submit-patient-form').click(function(){
+  var $form = $("#insert-patient-form");
+  let formData = JSON.stringify( getFormData($form) );
+
+  $.ajax({
+    type: "POST",
+    url: "/insert_patient",
+    data: formData,
+    success: function(){
+      console.log("Success")
+    },
+    dataType: "json",
+    contentType : "application/json"
+  });
+
+})
+
+</script>
+
+
 {% endblock %}
