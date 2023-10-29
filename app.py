@@ -58,11 +58,11 @@ def get_patients():
 
 @app.route('/insert_doctor', methods=['POST'])
 def insert_doctor():
-    data = request.get_json()
+    data = json.loads(request.get_data())
     client = MongoClient(mongo_uri)
     try:
         client.server_info()  # Check if connected to MongoDB
-        db = client.your_database_name
+        db = client.get_database(db_name)
         doctors_collection = db.get_collection('doctors_collection')
 
         insert_result = doctors_collection.insert_one(data)
@@ -75,11 +75,7 @@ def insert_doctor():
 
 @app.route('/insert_patient', methods=['POST'])
 def insert_patient():
-    print("got the insert patient request")
-    print(request.get_data())
-    print("printed")
     data = json.loads(request.get_data())
-    print(data)
     client = MongoClient(mongo_uri)
     try:
         client.server_info()  # Check if connected to MongoDB
